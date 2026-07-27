@@ -87,71 +87,72 @@ export default function Header() {
         <span>Free delivery on orders above ₹499</span>
       </div>
 
-      <div className="flex items-center gap-3 px-4 md:px-6 py-3">
-        <button
-          className="md:hidden p-2 -ml-2"
-          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-          onClick={() => setMenuOpen((o) => !o)}
-        >
-          {menuOpen ? <X size={22} /> : <Menu size={22} />}
-        </button>
+      <div ref={searchRef}>
+        <div className="flex items-center gap-3 px-4 md:px-6 py-3">
+          <button
+            className="md:hidden p-2 -ml-2"
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            onClick={() => setMenuOpen((o) => !o)}
+          >
+            {menuOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
 
-        <Link to="/" className="flex items-center gap-2 shrink-0" onClick={handleNavClick}>
-          <span className="grid place-items-center w-8 sm:w-10 h-8 sm:h-10 rounded-full bg-leaf-500 text-turmeric-100 font-display font-bold text-base sm:text-lg">
-            SM
-          </span>
-          <span className="font-display font-bold text-sm sm:text-lg md:text-xl text-leaf-500 dark:text-turmeric-100 leading-none">
-            Selvam Maligai Store
-            <span className="block text-[9px] sm:text-[11px] font-display font-medium tracking-wide text-ink-500 dark:text-rice-200">
-              Wholesale &amp; Retail
+          <Link to="/" className="flex items-center gap-2 shrink-0" onClick={handleNavClick}>
+            <span className="grid place-items-center w-8 sm:w-10 h-8 sm:h-10 rounded-full bg-leaf-500 text-turmeric-100 font-display font-bold text-base sm:text-lg">
+              SM
             </span>
-          </span>
-        </Link>
+            <span className="font-display font-bold text-sm sm:text-lg md:text-xl text-leaf-500 dark:text-turmeric-100 leading-none">
+              Selvam Maligai Store
+              <span className="block text-[9px] sm:text-[11px] font-display font-medium tracking-wide text-ink-500 dark:text-rice-200">
+                Wholesale &amp; Retail
+              </span>
+            </span>
+          </Link>
 
-        {/* Search */}
-        <div className="hidden sm:flex flex-1 max-w-xl mx-2 relative" ref={searchRef}>
-          <form onSubmit={handleSearchSubmit} className="w-full">
-            <label className="relative w-full block">
-              <span className="sr-only">Search products</span>
-              <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-ink-500" />
-              <input
-                value={query}
-                onChange={(e) => {
-                  const nextValue = e.target.value;
-                  setQuery(nextValue);
-                  setShowSuggestions(true);
-                }}
-                onFocus={() => setShowSuggestions(true)}
-                type="search"
-                placeholder="Search for rice, dal, spices..."
-                className="w-full rounded-full border border-leaf-100 bg-white py-2.5 pl-10 pr-4 text-sm text-ink-900 outline-none focus:border-leaf-400 dark:bg-leaf-600/30 dark:border-leaf-400/30 dark:text-rice-100 dark:placeholder:text-rice-200/60"
-              />
-            </label>
-          </form>
+          {/* Search */}
+          <div className="hidden sm:flex flex-1 max-w-xl mx-2 relative">
+            <form onSubmit={handleSearchSubmit} className="w-full">
+              <label className="relative w-full block">
+                <span className="sr-only">Search products</span>
+                <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-ink-500" />
+                <input
+                  value={query}
+                  onChange={(e) => {
+                    const nextValue = e.target.value;
+                    setQuery(nextValue);
+                    setShowSuggestions(true);
+                  }}
+                  onFocus={() => setShowSuggestions(true)}
+                  type="search"
+                  placeholder="Search for rice, dal, spices..."
+                  className="w-full rounded-full border border-leaf-100 bg-white py-2.5 pl-10 pr-4 text-sm text-ink-900 outline-none focus:border-leaf-400 dark:bg-leaf-600/30 dark:border-leaf-400/30 dark:text-rice-100 dark:placeholder:text-rice-200/60"
+                />
+              </label>
+            </form>
 
-          {showSuggestions && suggestions.length > 0 && (
-            <ul className="absolute left-0 top-full z-50 mt-2 w-full overflow-hidden rounded-2xl border border-leaf-100 bg-white shadow-lg dark:border-leaf-400/20 dark:bg-leaf-700">
-              {suggestions.map((product) => (
-                <li key={product.id}>
-                  <button
-                    type="button"
-                    onMouseDown={(event) => event.preventDefault()}
-                    onClick={() => handleSelectProduct(product)}
-                    className="flex w-full items-center justify-between px-3 py-2 text-left text-sm text-ink-700 transition hover:bg-leaf-50 dark:text-rice-100 dark:hover:bg-leaf-600/50"
-                  >
-                    <span>
-                      <span className="block font-medium">{product.name}</span>
-                      <span className="text-xs text-ink-500 dark:text-rice-200/70">{product.category} · {product.unit}</span>
-                    </span>
-                    <span className="text-xs font-semibold text-leaf-500">Select</span>
-                  </button>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
+            {showSuggestions && suggestions.length > 0 && (
+              <ul className="absolute left-0 top-full z-50 mt-2 w-full overflow-hidden rounded-2xl border border-leaf-100 bg-white shadow-lg dark:border-leaf-400/20 dark:bg-leaf-700">
+                {suggestions.map((product) => (
+                  <li key={product.id}>
+                    <button
+                      type="button"
+                      onMouseDown={(event) => event.preventDefault()}
+                      onClick={() => handleSelectProduct(product)}
+                      className="flex w-full items-center justify-between px-3 py-2 text-left text-sm text-ink-700 transition hover:bg-leaf-50 dark:text-rice-100 dark:hover:bg-leaf-600/50"
+                    >
+                      <span>
+                        <span className="block font-medium">{product.name}</span>
+                        <span className="text-xs text-ink-500 dark:text-rice-200/70">{product.category} · {product.unit}</span>
+                      </span>
+                      <span className="text-xs font-semibold text-leaf-500">Select</span>
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
 
-        <div className="flex items-center gap-1 md:gap-2 ml-auto">
+          <div className="flex items-center gap-1 md:gap-2 ml-auto">
           <button
             onClick={toggleTheme}
             aria-label="Toggle dark mode"
@@ -202,7 +203,7 @@ export default function Header() {
       </div>
 
       {/* Mobile search */}
-      <div className="sm:hidden px-4 pb-3" ref={searchRef}>
+      <div className="sm:hidden px-4 pb-3">
         <form onSubmit={handleSearchSubmit} className="relative">
           <label className="relative w-full block">
             <span className="sr-only">Search products</span>
@@ -281,6 +282,7 @@ export default function Header() {
           </div>
         </nav>
       )}
+    </div>
     </header>
   );
 }
