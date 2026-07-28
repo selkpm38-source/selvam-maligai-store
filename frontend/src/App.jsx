@@ -3,8 +3,6 @@ import Header from './components/Header.jsx';
 import Footer from './components/Footer.jsx';
 import CartDrawer from './components/CartDrawer.jsx';
 import Home from './pages/Home.jsx';
-import Login from './pages/Login.jsx';
-import Register from './pages/Register.jsx';
 import ProductManager from './pages/ProductManager.jsx';
 
 export default function App() {
@@ -13,8 +11,7 @@ export default function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        {/* Login and Register pages removed */}
         <Route path="/manager" element={<ProductManager />} />
       </Routes>
       <Footer />

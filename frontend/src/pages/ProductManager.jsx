@@ -152,7 +152,7 @@ export default function ProductManager() {
           <p className="mt-4 text-sm text-ink-500 dark:text-rice-200/70">
             Please log in with the shop owner account to manage products.
           </p>
-          <Link to="/login" className="inline-flex mt-6 rounded-full bg-leaf-500 hover:bg-leaf-400 text-white font-semibold px-6 py-3 transition-colors">
+          <Link to="/" className="inline-flex mt-6 rounded-full bg-leaf-500 hover:bg-leaf-400 text-white font-semibold px-6 py-3 transition-colors">
             Log in
           </Link>
         </div>
