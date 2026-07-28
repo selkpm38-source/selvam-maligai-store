@@ -28,6 +28,18 @@ export function AuthProvider({ children }) {
     return data.data.user || null;
   };
 
+  const register = async (userData) => {
+    try {
+      // Assuming authApi has a register method that calls your backend's /api/auth/register
+      const { data } = await authApi.register(userData);
+      // For registration, we typically don't log in immediately, but redirect to the login page.
+      // The backend might return the registered user data or a success message.
+      return data.data.user || null; // Or just a success indicator
+    } catch (error) {
+      throw error; // Re-throw the error to be caught by the component
+    }
+  };
+
   const logout = async () => {
     try {
       await authApi.logout();
@@ -67,7 +79,7 @@ export function AuthProvider({ children }) {
   const isAuthenticated = Boolean(user && accessToken);
 
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated, login, logout, loading }}>
+    <AuthContext.Provider value={{ user, isAuthenticated, login, register, logout, loading }}>
       {children}
     </AuthContext.Provider>
   );

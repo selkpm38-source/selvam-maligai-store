@@ -7,10 +7,11 @@ import { useProducts } from '../context/ProductsContext.jsx';
 
 export default function CartDrawer() {
   const navigate = useNavigate();
-  const { items, isOpen, setIsOpen, removeItem, setQuantity, subtotal } = useCart();
+  const { items, isOpen, setIsOpen, removeItem, setQuantity, clearCart, subtotal } = useCart();
   const { isAuthenticated } = useAuth();
   const { products } = useProducts();
-  const canCheckout = items.length > 0 && products.length > 0 && items.length === products.length;
+  // Allow checkout whenever there's at least one item in the cart
+  const canCheckout = items.length > 0;
 
   const sendCheckoutMessage = () => {
     const phoneNumber = '919345786927';
@@ -26,12 +27,11 @@ export default function CartDrawer() {
   };
 
   const handleCheckout = () => {
-    if (!isAuthenticated) {
-      setIsOpen(false);
-      navigate('/login');
-      return;
-    }
+    // Close the cart and open WhatsApp in a new tab for all users
+    setIsOpen(false);
     sendCheckoutMessage();
+    // Clear the cart after initiating checkout
+    clearCart();
   };
 
   return (
@@ -118,18 +118,18 @@ export default function CartDrawer() {
                 <p className="rounded-lg bg-turmeric-100/60 dark:bg-turmeric-500/10 px-3 py-2 text-[11px] xs:text-xs text-ink-700 dark:text-rice-100">
                   No online payment. We will confirm payment and delivery details on WhatsApp.
                 </p>
-                {canCheckout ? (
-                  <button
-                    onClick={handleCheckout}
-                    className="w-full rounded-full bg-leaf-500 hover:bg-leaf-400 text-white font-semibold py-2.5 xs:py-3 text-sm xs:text-base transition-colors"
-                  >
-                    Proceed to Checkout
-                  </button>
-                ) : (
-                  <div className="w-full rounded-full bg-ink-200 text-ink-500 font-semibold py-2.5 xs:py-3 text-sm xs:text-base text-center transition-colors dark:bg-ink-700 dark:text-rice-300">
-                    Add all items to cart to checkout
-                  </div>
-                )}
+                  {canCheckout ? (
+                    <button
+                      onClick={handleCheckout}
+                      className="w-full rounded-full bg-leaf-500 hover:bg-leaf-400 text-white font-semibold py-2.5 xs:py-3 text-sm xs:text-base transition-colors"
+                    >
+                      Proceed to Checkout
+                    </button>
+                  ) : (
+                    <div className="w-full rounded-full bg-ink-200 text-ink-500 font-semibold py-2.5 xs:py-3 text-sm xs:text-base text-center transition-colors dark:bg-ink-700 dark:text-rice-300">
+                      Add items to cart to checkout
+                    </div>
+                  )}
               </div>
             )}
           </motion.aside>
