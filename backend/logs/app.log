@@ -299,3 +299,4 @@
 {"level":"info","message":"\u001b[0mPOST /api/auth/register \u001b[32m201\u001b[0m 2992.620 ms - 425\u001b[0m","timestamp":"2026-07-26T15:26:24.712Z"}
 {"level":"info","message":"\u001b[0mPOST /api/auth/login \u001b[32m200\u001b[0m 1156.180 ms - 425\u001b[0m","timestamp":"2026-07-26T15:26:36.326Z"}
 {"level":"info","message":"\u001b[0mPOST /api/auth/login \u001b[32m200\u001b[0m 959.016 ms - 436\u001b[0m","timestamp":"2026-07-26T15:30:03.185Z"}
+{"level":"info","message":"SELVAM MALIGAI STORE API listening on port 5000 [development]","timestamp":"2026-07-28T15:10:38.969Z"}

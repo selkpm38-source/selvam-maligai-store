@@ -4,10 +4,6 @@
   "outputDirectory": "dist",
   "rewrites": [
     {
-      "source": "/api/(.*)",
-      "destination": "https://backend-lemon-nine-83.vercel.app/api/$1"
-    },
-    {
       "source": "/(.*)",
       "destination": "/index.html"
     }

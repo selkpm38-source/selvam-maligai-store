@@ -28,6 +28,23 @@ Run the Phase 1 backend alongside it (`cd ../backend && npm run dev`) to
 exercise real login/register — the rest of the homepage renders from mock
 data until Phase 2's product API lands.
 
+## Environment variables
+
+Create a `.env` file in `frontend` or set Vercel environment variables from the
+Dashboard. The frontend reads `VITE_API_BASE_URL` and falls back to `/api`.
+
+Example `frontend/.env`:
+
+```bash
+VITE_API_BASE_URL=/api
+```
+
+Example for a separate deployed backend:
+
+```bash
+VITE_API_BASE_URL=https://your-backend-domain.vercel.app/api
+```
+
 ## What's here
 
 - Sticky header: search, cart with live count, dark/light toggle

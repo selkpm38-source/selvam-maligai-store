@@ -1,11 +1,12 @@
 import axios from 'axios';
+import { API_BASE_URL } from '../config/api.js';
 
 /**
  * Talks to the real Phase 1 backend (auth endpoints are live; product/cart/
  * order endpoints land in Phase 2 and will slot into this same client).
  */
 const apiClient = axios.create({
-  baseURL: '/api',
+  baseURL: API_BASE_URL,
   withCredentials: true, // send the httpOnly refresh cookie
 });
 

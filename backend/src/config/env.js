@@ -7,6 +7,7 @@ require('dotenv').config();
 
 const isProduction = process.env.NODE_ENV === 'production' || process.env.VERCEL === '1';
 const productionClientUrl = 'https://selvammaligai.vercel.app';
+const vercelClientUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL.replace(/\/$/, '')}` : null;
 const defaultDatabaseUrl = process.env.DATABASE_URL || process.env.DIRECT_URL || 'postgresql://postgres.ctxpqkmuosezyvyjubwa:a7IIGPLECGGekjkO@aws-0-ap-southeast-1.pooler.supabase.com:6543/postgres?pgbouncer=true';
 const defaultJwtAccessSecret = process.env.JWT_ACCESS_SECRET || '7d7345c49cd774f828cd59ede2fbfa87024431964d2c9fd04b89ad7ff31a1f0f15905bbf02b97f00bc404eed2de8ea947a8af61cbf67d4ffaa5faeb68c6eebe8';
 const defaultJwtRefreshSecret = process.env.JWT_REFRESH_SECRET || 'bf286d2c591e33a128d3baca5af91b48692f67964baeea4f9af7d2abf4fe3714ce87770cf4dd92aff85db13dcdf0a771245caf921c4a2fd588f8973571e00b03';
@@ -14,7 +15,8 @@ const defaultCookieSecret = process.env.COOKIE_SECRET || '26fed0bb0d8a5664567e1d
 const defaultCsrfSecret = process.env.CSRF_SECRET || '08e7fbb04ec4d91af113d1bcbc9274bdf7155a7c861521e97ef159d6af52ef8eba2dfe4d46f6f8ea34b49d4941bcfec30da2ba20b198c631938df125c33249f5';
 
 if (isProduction) {
-  const configuredClientUrl = (process.env.CLIENT_URL || productionClientUrl).replace(/\/$/, '');
+  const defaultClientUrl = process.env.CLIENT_URL || vercelClientUrl || productionClientUrl;
+  const configuredClientUrl = defaultClientUrl.replace(/\/$/, '');
   const localClientValues = ['http://localhost', 'http://127.0.0.1', 'http://0.0.0.0', 'https://localhost'];
 
   if (
@@ -22,6 +24,8 @@ if (isProduction) {
     localClientValues.some((value) => configuredClientUrl.startsWith(value))
   ) {
     process.env.CLIENT_URL = productionClientUrl;
+  } else {
+    process.env.CLIENT_URL = configuredClientUrl;
   }
 
   if (process.env.COOKIE_SECURE !== 'true') {

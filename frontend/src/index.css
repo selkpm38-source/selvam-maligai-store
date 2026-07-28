@@ -95,3 +95,21 @@ html.dark body {
     scroll-behavior: auto !important;
   }
 }
+
+/* Temporary: hide Vercel preview / share install banner on mobile
+   This is a brittle, short-term workaround. Permanent fix: disable the
+   Vercel share link or use a production/custom domain. */
+#vercel-shared-banner,
+.vercel-badge,
+[data-vercel-share],
+[data-vercel-banner],
+.vercel-app-prompt {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* Also hide any fixed bottom banners injected by Vercel */
+body > .vercel-banner, body > #vercel-banner {
+  display: none !important;
+}
