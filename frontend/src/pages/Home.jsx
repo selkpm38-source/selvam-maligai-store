@@ -5,7 +5,6 @@ import CategoryChips from '../components/CategoryChips.jsx';
 import ProductRail from '../components/ProductRail.jsx';
 import StoreStats from '../components/StoreStats.jsx';
 import { WhyChooseUs, AboutStore } from '../components/StoreInfo.jsx';
-import Newsletter from '../components/Newsletter.jsx';
 import { useProducts } from '../context/ProductsContext.jsx';
 import { categories, storeStats } from '../data/mockProducts.js';
 import { getMatchingProducts } from '../utils/productSearch.js';
@@ -59,7 +58,6 @@ export default function Home() {
 
       <WhyChooseUs />
       <AboutStore />
-      <Newsletter />
     </main>
   );
 }
