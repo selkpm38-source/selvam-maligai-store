@@ -1,9 +1,0 @@
-{
-  "name": "selvam-maligai-store",
-  "private": true,
-  "scripts": {
-    "build": "cd frontend && npm install && npm run build",
-    "frontend": "cd frontend && npm install && npm run dev",
-    "backend": "cd backend && npm install && npm run dev"
-  }
-}
