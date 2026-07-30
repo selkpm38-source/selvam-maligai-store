@@ -1,16 +1,16 @@
 {
   "name": "selvam-maligai-store-backend",
   "version": "1.0.0",
-  "description": "Secure Node.js/Express/MySQL backend for SELVAM MALIGAI STORE",
+  "description": "Secure Node.js/Express/PostgreSQL backend for SELVAM MALIGAI STORE",
   "main": "server.js",
   "type": "commonjs",
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
-    "db:migrate": "mysql -u root -p < src/database/schema.sql"
+    "db:migrate": "echo \"Using PostgreSQL - migrations handled separately\""
   },
   "dependencies": {
-    "bcrypt": "^5.1.1",
+    "bcryptjs": "^3.0.3",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
@@ -36,8 +36,5 @@
   },
   "engines": {
     "node": ">=18.0.0"
-  },
-  "allowScripts": {
-    "bcrypt@5.1.1": true
   }
 }
