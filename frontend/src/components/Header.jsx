@@ -87,7 +87,7 @@ export default function Header() {
         <span>Free delivery on orders above ₹499</span>
       </div>
 
-      <div ref={searchRef}>
+      <div>
         <div className="flex items-center gap-3 px-4 md:px-6 py-3">
           <button
             className="md:hidden p-2 -ml-2"
@@ -110,7 +110,7 @@ export default function Header() {
           </Link>
 
           {/* Search */}
-          <div className="hidden sm:flex flex-1 max-w-xl mx-2 relative">
+          <div className="hidden sm:flex flex-1 max-w-xl mx-2 relative" ref={searchRef}>
             <form onSubmit={handleSearchSubmit} className="w-full">
               <label className="relative w-full block">
                 <span className="sr-only">Search products</span>
@@ -179,12 +179,20 @@ export default function Header() {
               </button>
             </>
           ) : (
-            <Link
-              to="/"
-              className="hidden sm:inline-flex text-sm font-medium px-3 py-2 rounded-full hover:bg-leaf-100 dark:hover:bg-leaf-400/20 transition-colors"
-            >
-              Login
-            </Link>
+            <>
+              <Link
+                to="/login"
+                className="hidden sm:inline-flex text-sm font-medium px-3 py-2 rounded-full hover:bg-leaf-100 dark:hover:bg-leaf-400/20 transition-colors"
+              >
+                Login
+              </Link>
+              <Link
+                to="/register"
+                className="hidden sm:inline-flex text-sm font-medium px-3 py-2 rounded-full hover:bg-leaf-100 dark:hover:bg-leaf-400/20 transition-colors"
+              >
+                Register
+              </Link>
+            </>
           )}
 
           <button
@@ -203,7 +211,7 @@ export default function Header() {
       </div>
 
       {/* Mobile search */}
-      <div className="sm:hidden px-4 pb-3">
+      <div className="sm:hidden px-4 pb-3" ref={searchRef}>
         <form onSubmit={handleSearchSubmit} className="relative">
           <label className="relative w-full block">
             <span className="sr-only">Search products</span>
@@ -271,13 +279,22 @@ export default function Header() {
                 </button>
               </>
             ) : (
-              <Link
-                to="/"
-                onClick={handleNavClick}
-                className="block text-sm font-medium px-4 py-2 rounded-lg hover:bg-leaf-100 dark:hover:bg-leaf-400/20 transition-colors"
-              >
-                Login
-              </Link>
+              <>
+                <Link
+                  to="/login"
+                  onClick={handleNavClick}
+                  className="block text-sm font-medium px-4 py-2 rounded-lg hover:bg-leaf-100 dark:hover:bg-leaf-400/20 transition-colors"
+                >
+                  Login
+                </Link>
+                <Link
+                  to="/register"
+                  onClick={handleNavClick}
+                  className="block text-sm font-medium px-4 py-2 rounded-lg hover:bg-leaf-100 dark:hover:bg-leaf-400/20 transition-colors"
+                >
+                  Register
+                </Link>
+              </>
             )}
           </div>
         </nav>
