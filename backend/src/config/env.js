@@ -6,7 +6,7 @@
 require('dotenv').config();
 
 const isProduction = process.env.NODE_ENV === 'production' || process.env.VERCEL === '1';
-const productionClientUrl = 'https://selvammaligai.vercel.app';
+const productionClientUrl = 'selvam-maligai-store.vercel.app';
 const vercelClientUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL.replace(/\/$/, '')}` : null;
 const defaultDatabaseUrl = process.env.DATABASE_URL || process.env.DIRECT_URL || 'postgresql://postgres.ctxpqkmuosezyvyjubwa:a7IIGPLECGGekjkO@aws-0-ap-southeast-1.pooler.supabase.com:6543/postgres?pgbouncer=true';
 const defaultJwtAccessSecret = process.env.JWT_ACCESS_SECRET || '7d7345c49cd774f828cd59ede2fbfa87024431964d2c9fd04b89ad7ff31a1f0f15905bbf02b97f00bc404eed2de8ea947a8af61cbf67d4ffaa5faeb68c6eebe8';
@@ -39,7 +39,7 @@ module.exports = {
   port: parseInt(process.env.PORT, 10) || 5000,
 
   clientUrl: (
-    process.env.CLIENT_URL || (isProduction ? 'https://selvammaligai.vercel.app' : 'http://localhost:5173')
+    process.env.CLIENT_URL || (isProduction ? 'https://selvam-maligai-store.vercel.app' : 'http://localhost:5173')
   ).replace(/\/$/, ''),
 
   ownerEmail: (
